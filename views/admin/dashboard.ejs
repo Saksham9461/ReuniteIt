@@ -4,17 +4,156 @@
   <meta charset="utf-8">
   <title><%= title %></title>
   <style>
-    body{background:#0f0f0f;color:#e0e0e0;font-family:Arial, sans-serif;padding:20px;}
-    .wrap{max-width:1200px;margin:0 auto;}
-    .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
-    .cards{display:flex;gap:12px;margin:18px 0}
-    .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;flex:1}
-    table{width:100%;border-collapse:collapse;margin-top:14px}
-    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.04);text-align:left;font-size:14px}
-    .btn{padding:6px 8px;border-radius:8px;text-decoration:none;color:#021;background:#bfefff;font-weight:700;margin-right:6px}
-    .danger{background:#ff8b8b}
-    form{display:inline}
-    .small{font-size:12px;color:#bbb}
+    :root{
+      --bg:#0f0f0f;
+      --muted:#bbb;
+      --card-bg: rgba(255,255,255,0.03);
+      --card-border: rgba(255,255,255,0.06);
+      --accent: #00bcd4;
+      --btn-bg: #bfefff;
+      --danger-bg: #ff8b8b;
+      --text: #e0e0e0;
+      --max-width: 1200px;
+    }
+
+    /* Reset / base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:20px;
+    }
+
+    .wrap{max-width:var(--max-width);margin:0 auto; padding:8px;}
+
+    /* Top row */
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .top h1{margin:0;font-size:clamp(18px,2.6vw,26px)}
+    .top form{margin:0}
+
+    /* Cards grid */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:12px;
+      margin:18px 0;
+    }
+    .card{
+      background:var(--card-bg);
+      border:1px solid var(--card-border);
+      padding:12px;
+      border-radius:10px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-height:68px;
+      justify-content:center;
+    }
+    .card .small{font-size:12px;color:var(--muted)}
+    .card .big{font-size:clamp(18px,2.2vw,22px);font-weight:700;color:#fff}
+
+    /* Tables */
+    .section-title{margin:12px 0 8px 0;font-size:1.05rem}
+    .table-wrap{width:100%; overflow:auto; -webkit-overflow-scrolling:touch; border-radius:10px}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:760px; /* allows horizontal scroll on small screens */
+      background:transparent;
+    }
+    thead th{
+      text-align:left;
+      padding:10px 12px;
+      font-size:13px;
+      color:var(--muted);
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      white-space:nowrap;
+    }
+    tbody td{
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      vertical-align:middle;
+      font-size:14px;
+    }
+    tbody tr:hover td{background:rgba(255,255,255,0.01)}
+
+    img.preview{
+      width:100px;
+      height:70px;
+      object-fit:cover;
+      border-radius:6px;
+      display:block;
+    }
+
+    /* Buttons */
+    .btn{
+      padding:7px 10px;
+      border-radius:8px;
+      text-decoration:none;
+      color:#021;
+      background:var(--btn-bg);
+      font-weight:700;
+      border:0;
+      cursor:pointer;
+      display:inline-block;
+      margin-right:6px;
+      font-size:13px;
+    }
+    .btn.danger{background:var(--danger-bg); color:#3a0000}
+    form.inline{display:inline}
+
+    /* small text */
+    .small{font-size:12px;color:var(--muted);margin-top:4px}
+
+    /* Users table smaller columns */
+    .users-table td{vertical-align:middle}
+
+    /* Responsive rules */
+    @media (max-width: 1100px){
+      .cards{grid-template-columns: repeat(3, 1fr)}
+      table{min-width:720px}
+    }
+    @media (max-width: 800px){
+      .cards{grid-template-columns: repeat(2, 1fr)}
+      .top{align-items:flex-start}
+      .card .big{font-size:18px}
+      table{min-width:600px}
+      .btn{padding:8px 10px;font-size:13px}
+    }
+    @media (max-width: 560px){
+      .cards{grid-template-columns: 1fr}
+      .wrap{padding:6px}
+      .top{gap:8px}
+      h1{font-size:18px}
+      .table-wrap{box-shadow:none}
+      table{min-width:520px}
+      thead th, tbody td{padding:8px}
+      img.preview{width:88px;height:60px}
+      /* stack action buttons vertically on small screens */
+      td form{display:block;margin-bottom:6px}
+      td form button{width:100%}
+    }
+    @media (max-width: 420px){
+      table{min-width:480px}
+      img.preview{width:72px;height:52px}
+      thead th{font-size:12px}
+      tbody td{font-size:13px;padding:6px}
+      .card .big{font-size:16px}
+    }
+
+    /* accessibility / focus */
+    button:focus, a:focus{outline:2px solid rgba(0,188,212,0.18); outline-offset:2px}
   </style>
 </head>
 <body>
@@ -26,62 +165,72 @@
       </form>
     </div>
 
-    <div class="cards">
-      <div class="card"><div class="small">Total Users</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.totalUsers %></div></div>
-      <div class="card"><div class="small">Total Reports</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.totalReports %></div></div>
-      <div class="card"><div class="small">Lost</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.totalLost %></div></div>
-      <div class="card"><div class="small">Found</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.totalFound %></div></div>
-      <div class="card"><div class="small">Pending</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.pending %></div></div>
+    <div class="cards" aria-hidden="false">
+      <div class="card"><div class="small">Total Users</div><div class="big"><%= stats.totalUsers %></div></div>
+      <div class="card"><div class="small">Total Reports</div><div class="big"><%= stats.totalReports %></div></div>
+      <div class="card"><div class="small">Lost</div><div class="big"><%= stats.totalLost %></div></div>
+      <div class="card"><div class="small">Found</div><div class="big"><%= stats.totalFound %></div></div>
+      <div class="card"><div class="small">Pending</div><div class="big"><%= stats.pending %></div></div>
     </div>
 
-    <h2>Recent Reports</h2>
-    <table>
-      <thead>
-        <tr><th>Preview</th><th>Category</th><th>Location</th><th>Status</th><th>Posted By</th><th>Approved</th><th>Actions</th></tr>
-      </thead>
-      <tbody>
-        <% reports.forEach(r => { %>
-          <tr>
-            <td style="width:120px"><img src="<%= r.imageUrl %>" style="width:100px;height:70px;object-fit:cover;border-radius:6px"></td>
-            <td><%= r.category %></td>
-            <td><%= r.location %></td>
-            <td><%= r.status %></td>
-            <td><%= r.name %> <div class="small"><%= r.email %></div></td>
-            <td><%= typeof r.approved === 'undefined' ? 'PENDING' : (r.approved ? 'APPROVED' : 'REJECTED') %></td>
-            <td>
-              <% if (typeof r.approved === 'undefined' || r.approved === false) { %>
-                <form action="/admin/report/<%= r._id %>/approve" method="POST"><button class="btn" type="submit">Approve</button></form>
-              <% } %>
-              <% if (typeof r.approved === 'undefined' || r.approved === true) { %>
-                <form action="/admin/report/<%= r._id %>/reject" method="POST"><button class="btn" type="submit">Reject</button></form>
-              <% } %>
-              <form action="/admin/report/<%= r._id %>/delete" method="POST" onsubmit="return confirm('Delete this report?')">
-                <button class="btn danger" type="submit">Delete</button>
-              </form>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
+    <h2 class="section-title">Recent Reports</h2>
+    <div class="table-wrap" role="region" aria-label="Recent reports">
+      <table>
+        <thead>
+          <tr><th>Preview</th><th>Category</th><th>Location</th><th>Status</th><th>Posted By</th><th>Approved</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          <% reports.forEach(r => { %>
+            <tr>
+              <td style="width:120px">
+                <% if (r.imageUrl) { %>
+                  <img class="preview" src="<%= r.imageUrl %>" alt="preview">
+                <% } else { %>
+                  <div style="width:100px;height:70px;border-radius:6px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;color:var(--muted)">No Image</div>
+                <% } %>
+              </td>
+              <td><%= r.category %></td>
+              <td><%= r.location %></td>
+              <td><%= r.status %></td>
+              <td><%= r.name %> <div class="small"><%= r.email %></div></td>
+              <td><%= typeof r.approved === 'undefined' ? 'PENDING' : (r.approved ? 'APPROVED' : 'REJECTED') %></td>
+              <td style="white-space:nowrap">
+                <% if (typeof r.approved === 'undefined' || r.approved === false) { %>
+                  <form class="inline" action="/admin/report/<%= r._id %>/approve" method="POST"><button class="btn" type="submit">Approve</button></form>
+                <% } %>
+                <% if (typeof r.approved === 'undefined' || r.approved === true) { %>
+                  <form class="inline" action="/admin/report/<%= r._id %>/reject" method="POST"><button class="btn" type="submit">Reject</button></form>
+                <% } %>
+                <form class="inline" action="/admin/report/<%= r._id %>/delete" method="POST" onsubmit="return confirm('Delete this report?')">
+                  <button class="btn danger" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
 
-    <h2 style="margin-top:24px">Users</h2>
-    <table>
-      <thead><tr><th>Name</th><th>Email</th><th>Reports</th><th>Actions</th></tr></thead>
-      <tbody>
-        <% users.forEach(u => { %>
-          <tr>
-            <td><%= u.fullName %></td>
-            <td><%= u.email %></td>
-            <td><%= u._id ? reports.filter(r => String(r.postedBy) === String(u._id)).length : 0 %></td>
-            <td>
-              <form action="/admin/user/<%= u._id %>/delete" method="POST" onsubmit="return confirm('Delete user and their reports?')">
-                <button class="btn danger" type="submit">Delete</button>
-              </form>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
+    <h2 class="section-title" style="margin-top:18px">Users</h2>
+    <div class="table-wrap" role="region" aria-label="Users list">
+      <table class="users-table">
+        <thead><tr><th>Name</th><th>Email</th><th>Reports</th><th>Actions</th></tr></thead>
+        <tbody>
+          <% users.forEach(u => { %>
+            <tr>
+              <td><%= u.fullName %></td>
+              <td><%= u.email %></td>
+              <td><%= u._id ? reports.filter(r => String(r.postedBy) === String(u._id)).length : 0 %></td>
+              <td style="white-space:nowrap">
+                <form class="inline" action="/admin/user/<%= u._id %>/delete" method="POST" onsubmit="return confirm('Delete user and their reports?')">
+                  <button class="btn danger" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </body>
