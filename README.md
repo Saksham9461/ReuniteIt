@@ -81,3 +81,14 @@ This project includes a **modern UI**, SEO meta tags, responsive design, and Clo
 
 ---
 
+# 📊 Admin Dashboard Features
+
+- Total Users  
+- Total Reports  
+- Lost Count  
+- Found Count  
+- Pending Approvals  
+- Approve/Reject/Delete Reports  
+- Delete Users and Their Reports  
+
+---
