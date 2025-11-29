@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <style>
+    body{background:#0f0f0f;color:#e0e0e0;font-family:Arial, sans-serif;padding:20px;}
+    .wrap{max-width:1200px;margin:0 auto;}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .cards{display:flex;gap:12px;margin:18px 0}
+    .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;flex:1}
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.04);text-align:left;font-size:14px}
+    .btn{padding:6px 8px;border-radius:8px;text-decoration:none;color:#021;background:#bfefff;font-weight:700;margin-right:6px}
+    .danger{background:#ff8b8b}
+    form{display:inline}
+    .small{font-size:12px;color:#bbb}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1>Admin Dashboard</h1>
+      <form action="/admin/logout" method="POST" style="margin:0">
+        <button class="btn danger" type="submit">Logout</button>
+      </form>
+    </div>
+
+    <div class="cards">
+      <div class="card"><div class="small">Total Users</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.totalUsers %></div></div>
+      <div class="card"><div class="small">Total Reports</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.totalReports %></div></div>
+      <div class="card"><div class="small">Lost</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.totalLost %></div></div>
+      <div class="card"><div class="small">Found</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.totalFound %></div></div>
+      <div class="card"><div class="small">Pending</div><div style="font-size:22px;font-weight:700;color: white;"><%= stats.pending %></div></div>
+    </div>
+
+    <h2>Recent Reports</h2>
+    <table>
+      <thead>
+        <tr><th>Preview</th><th>Category</th><th>Location</th><th>Status</th><th>Posted By</th><th>Approved</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <% reports.forEach(r => { %>
+          <tr>
+            <td style="width:120px"><img src="<%= r.imageUrl %>" style="width:100px;height:70px;object-fit:cover;border-radius:6px"></td>
+            <td><%= r.category %></td>
+            <td><%= r.location %></td>
+            <td><%= r.status %></td>
+            <td><%= r.name %> <div class="small"><%= r.email %></div></td>
+            <td><%= typeof r.approved === 'undefined' ? 'PENDING' : (r.approved ? 'APPROVED' : 'REJECTED') %></td>
+            <td>
+              <% if (typeof r.approved === 'undefined' || r.approved === false) { %>
+                <form action="/admin/report/<%= r._id %>/approve" method="POST"><button class="btn" type="submit">Approve</button></form>
+              <% } %>
+              <% if (typeof r.approved === 'undefined' || r.approved === true) { %>
+                <form action="/admin/report/<%= r._id %>/reject" method="POST"><button class="btn" type="submit">Reject</button></form>
+              <% } %>
+              <form action="/admin/report/<%= r._id %>/delete" method="POST" onsubmit="return confirm('Delete this report?')">
+                <button class="btn danger" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <h2 style="margin-top:24px">Users</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Reports</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% users.forEach(u => { %>
+          <tr>
+            <td><%= u.fullName %></td>
+            <td><%= u.email %></td>
+            <td><%= u._id ? reports.filter(r => String(r.postedBy) === String(u._id)).length : 0 %></td>
+            <td>
+              <form action="/admin/user/<%= u._id %>/delete" method="POST" onsubmit="return confirm('Delete user and their reports?')">
+                <button class="btn danger" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+</html>

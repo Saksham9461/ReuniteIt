@@ -1,0 +1,46 @@
+<section class="hero">
+    <div class="glass-form">
+        <h2><i class="fa-solid fa-user-lock me-2"></i>Login</h2>
+
+        <% if (typeof errors !== "undefined" && errors.length > 0) { %>
+            <div class="alert alert-danger">
+                <% errors.forEach(err => { %>
+                    <p class="mb-1"><%= err %></p>
+                <% }) %>
+            </div>
+        <% } %>
+
+        <form action="/login" method="post">
+            <div class="mb-3">
+                <label class="form-label"><i class="fa-solid fa-envelope me-2"></i>Email</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    placeholder="Enter your email" 
+                    name="email" 
+                    value="<%= formData && formData.email ? formData.email : '' %>"
+                    required
+                >
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label"><i class="fa-solid fa-lock me-2"></i>Password</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    placeholder="Enter your password" 
+                    name="password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn btn-submit w-100">
+                <i class="fa-solid fa-right-to-bracket me-2"></i>Login
+            </button>
+
+            <div class="text-link mt-3">
+                Don't have an account? <a href="/signup">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</section>

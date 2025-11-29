@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+  <style>
+    /* minimal internal styles so it looks okay without changing site design */
+    body{background:#0f0f0f;color:#e0e0e0;font-family:Arial, sans-serif;padding:60px;}
+    .card{max-width:420px;margin:30px auto;padding:22px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);}
+    input{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:#0b0b0b;color:#fff}
+    button{padding:10px 14px;border-radius:8px;border:0;background:#00bcd4;color:#021;cursor:pointer;font-weight:700}
+    .err{color:#ff9b9b;margin-bottom:10px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Admin Login</h2>
+    <% if (errors && errors.length) { %>
+      <div class="err"><%= errors.join(", ") %></div>
+    <% } %>
+    <form action="/admin/login" method="POST" autocomplete="off">
+      <label style="color: white;">Email</label>
+      <input type="email" name="email" value="<%= formData.email || '' %>" required>
+      <label style="color: white;">Password</label>
+      <input type="password" name="password" required>
+      <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
+        <button type="submit">Login</button>
+        <br> <br>
+        <a href="/" style="color:#bfefff;text-decoration:none"><button>Back to site</button></a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

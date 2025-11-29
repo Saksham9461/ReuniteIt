@@ -1,0 +1,40 @@
+<section class="hero">
+    <div class="glass-form">
+        <h2><i class="fa-solid fa-box-open me-2"></i>Report Found</h2>
+        <form action="/report-found" method="POST" enctype="multipart/form-data">
+
+
+
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-tag"></i> Category</label>
+                <input type="text" class="form-control" placeholder="Enter caterogry (laptop, wallet...)" name="category"  required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><i class="fa-solid fa-align-left icon-box"></i> Description</label>
+                <textarea name="description" id="description" class="form-control" cols="5" placeholder="Enter description" name="description" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><i class="fa-regular fa-calendar-days icon-box"></i> Date of Found</label>
+                <input type="date" class="form-control" name="date" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><i class="fa-solid fa-location-dot icon-box"></i> Location</label>
+                <input type="text" class="form-control" placeholder="Enter location" name="location" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="file-upload" class="upload-label">
+                    <i class="fa-solid fa-upload me-2"></i>Upload Item Image
+                </label>
+                <input type="file" id="file-upload" accept="image/*" name="image">
+            </div>
+
+            <button type="submit" class="btn btn-submit w-100">
+                <i class="fa-solid fa-paper-plane me-2"></i>Submit
+            </button>
+        </form>
+    </div>
+</section>

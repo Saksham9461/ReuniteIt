@@ -1,0 +1,423 @@
+<body style="margin:0; font-family:'DM Sans', Montserrat, Arial, sans-serif; color:#e0e0e0; background:#0f0f0f;">
+    <!-- Responsive helpers -->
+    <style>
+        /* Base container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        /* Card look */
+        .card {
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, .15);
+            background: rgba(255, 255, 255, .08);
+            padding: 18px;
+            box-sizing: border-box;
+        }
+
+        .card-gradient {
+            background: linear-gradient(120deg, rgba(0, 188, 212, .10), rgba(138, 43, 226, .10));
+        }
+
+        /* Typography */
+        .kicker {
+            display: inline-block;
+            font-size: .9rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #00bcd4;
+            background: rgba(0, 188, 212, .08);
+            border: 1px solid rgba(255, 255, 255, .15);
+            padding: 6px 12px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .4);
+        }
+
+        .title {
+            font-family: Montserrat, sans-serif;
+            font-weight: 700;
+            font-size: clamp(28px, 4vw, 40px);
+            margin: 6px 0 6px;
+            color: #e0e0e0;
+            text-shadow: 0 0 10px rgba(0, 188, 212, .15);
+        }
+
+        .subtle {
+            color: rgba(255, 255, 255, .8);
+        }
+
+        /* Layout */
+        .toc {
+            display: block;
+        }
+
+        .sections {
+            display: grid;
+            gap: 14px;
+        }
+
+
+
+        /* Responsive rules */
+        @media (max-width: 992px) {
+            .container {
+                padding: 3rem 4%;
+            }
+
+            .title {
+                font-size: clamp(26px, 5vw, 36px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2.5rem 4%;
+            }
+
+            .toc ol {
+                padding-left: 18px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                padding: 2rem 3%;
+            }
+
+            .kicker {
+                font-size: .8rem;
+            }
+
+            .title {
+                font-size: clamp(24px, 6vw, 32px);
+            }
+
+            .card {
+                padding: 14px;
+            }
+
+            .toc ol {
+                padding-left: 16px;
+            }
+
+            .sections {
+                gap: 12px;
+            }
+        }
+
+        /* Table of contents columns on wide screens */
+        .toc-list {
+            columns: 2;
+            column-gap: 24px;
+        }
+
+        @media (max-width: 820px) {
+            .toc-list {
+                columns: 1;
+            }
+        }
+
+        /* Make long links wrap nicely */
+        a {
+            color: #00bcd4;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .legal-page .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .legal-page .card {
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, .15);
+            background: rgba(255, 255, 255, .08);
+            padding: 18px;
+            box-sizing: border-box;
+        }
+
+        .legal-page .card-gradient {
+            background: linear-gradient(120deg, rgba(0, 188, 212, .10), rgba(138, 43, 226, .10));
+        }
+
+        .legal-page .kicker {
+            /* … */
+        }
+
+        .legal-page .title {
+            /* … */
+        }
+
+        .legal-page .subtle {
+            /* … */
+        }
+
+        .legal-page .toc {
+            display: block;
+        }
+
+        .legal-page .sections {
+            display: grid;
+            gap: 14px;
+        }
+
+        @media (max-width: 992px) {
+            .legal-page .container {
+                padding: 3rem 4%;
+            }
+
+            .legal-page .title {
+                font-size: clamp(26px, 5vw, 36px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .legal-page .container {
+                padding: 2.5rem 4%;
+            }
+
+            .legal-page .toc ol {
+                padding-left: 18px;
+            }
+
+            .legal-page .card {
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .legal-page .container {
+                padding: 2rem 3%;
+            }
+
+            .legal-page .kicker {
+                font-size: .8rem;
+            }
+
+            .legal-page .title {
+                font-size: clamp(24px, 6vw, 32px);
+            }
+
+            .legal-page .card {
+                padding: 14px;
+            }
+
+            .legal-page .toc ol {
+                padding-left: 16px;
+            }
+
+            .legal-page .sections {
+                gap: 12px;
+            }
+        }
+
+        .legal-page .toc-list {
+            columns: 2;
+            column-gap: 24px;
+        }
+
+        @media (max-width: 820px) {
+            .legal-page .toc-list {
+                columns: 1;
+            }
+        }
+
+        /* Limit the link wrap rule to this page only */
+        .legal-page a {
+            color: #00bcd4;
+            text-decoration: none;
+            word-break: break-word;
+        }
+    </style>
+
+    <section class="legal-page">
+        <div class="container">
+
+            <!-- Kicker + Title -->
+            <span class="kicker">Legal</span>
+            <h1 class="title">Terms of <span style="color:#00bcd4;">Service</span></h1>
+            <p class="subtle" style="margin:0 0 8px 0;">Last updated: <strong>November 08, 2025</strong></p>
+            <p class="subtle" style="max-width:820px; margin:0 0 22px;">
+                These Terms of Service (“Terms”) govern your access to and use of <strong>ReuniteIt</strong> (the
+                “Service”).
+                By accessing or using the Service, you agree to be bound by these Terms and our Privacy Policy.
+            </p>
+
+            <!-- Sections -->
+            <div class="sections">
+                <div id="accept" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-check-circle"
+                            style="color:#00bcd4; margin-right:8px;"></i> Acceptance of Terms</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        By using the Service, you confirm that you have read, understood, and agree to these Terms. If
+                        you are using the Service
+                        on behalf of an organization, you represent that you have authority to bind that organization to
+                        these Terms.
+                    </p>
+                </div>
+
+                <div id="eligibility" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-user"
+                            style="color:#00bcd4; margin-right:8px;"></i> Eligibility & Accounts</h2>
+                    <ul style="margin:0; padding-left:18px; line-height:1.9; color:rgba(255,255,255,.9);">
+                        <li>You must be at least the age of majority in your jurisdiction or have parental consent.</li>
+                        <li>You agree to provide accurate information and keep your account secure (strong password, no
+                            sharing credentials).</li>
+                        <li>We may suspend or terminate accounts for violations, suspected fraud, or security issues.
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="user-content" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-list-alt"
+                            style="color:#00bcd4; margin-right:8px;"></i> User Content & Listings</h2>
+                    <p style="margin:0 0 8px; color:rgba(255,255,255,.85);">
+                        You retain ownership of the content you submit (e.g., item photos, descriptions), and grant
+                        ReuniteIt a worldwide, non-exclusive,
+                        royalty-free license to host, display, and distribute your content solely to operate and improve
+                        the Service.
+                    </p>
+                    <ul style="margin:0; padding-left:18px; line-height:1.9; color:rgba(255,255,255,.9);">
+                        <li>Post only truthful, non-misleading listings related to lost or found items.</li>
+                        <li>Do not post sensitive personal data or content you do not have rights to share.</li>
+                        <li>Images should be appropriate and free of illegal or copyrighted material without permission.
+                        </li>
+                        <li>We may moderate, hide, or remove content that violates these Terms or applicable law.</li>
+                    </ul>
+                </div>
+
+                <div id="conduct" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-ban"
+                            style="color:#00bcd4; margin-right:8px;"></i> Prohibited Conduct</h2>
+                    <ul style="margin:0; padding-left:18px; line-height:1.9; color:rgba(255,255,255,.9);">
+                        <li>Impersonation, harassment, or posting false claims.</li>
+                        <li>Spam, scraping, or unauthorized data collection.</li>
+                        <li>Uploading malware or attempting to compromise the Service.</li>
+                        <li>Commercial use unrelated to item recovery (e.g., selling items).</li>
+                        <li>Bypassing access controls or interfering with normal operations.</li>
+                    </ul>
+                </div>
+
+                <div id="matching" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-comments"
+                            style="color:#00bcd4; margin-right:8px;"></i> Matching & Communications</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        The Service may suggest matches between lost and found listings and enable messaging or email
+                        contact. You are responsible
+                        for verifying ownership before transfer. ReuniteIt is not a party to exchanges between users.
+                    </p>
+                </div>
+
+                <div id="ip" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-copyright"
+                            style="color:#00bcd4; margin-right:8px;"></i> Intellectual Property</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        The Service, trademarks, logos, and software are owned by ReuniteIt or its licensors and are
+                        protected by intellectual property laws.
+                        Except as permitted by law, you may not copy, modify, or create derivative works from the
+                        Service.
+                    </p>
+                </div>
+
+                <div id="thirdparty" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-external-link-alt"
+                            style="color:#00bcd4; margin-right:8px;"></i> Third-Party Services</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        We may integrate third-party services (e.g., Cloudinary for images, email providers, map
+                        providers).
+                        Your use of those services may be subject to their separate terms and policies.
+                    </p>
+                </div>
+
+                <div id="warranty" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-exclamation-triangle"
+                            style="color:#00bcd4; margin-right:8px;"></i> Disclaimers</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        THE SERVICE IS PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR
+                        IMPLIED,
+                        INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. We do not
+                        warrant uninterrupted or error-free operation,
+                        or the accuracy of user listings or matches.
+                    </p>
+                </div>
+
+                <div id="liability" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-balance-scale"
+                            style="color:#00bcd4; margin-right:8px;"></i> Limitation of Liability</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        To the maximum extent permitted by law, ReuniteIt and its affiliates shall not be liable for any
+                        indirect, incidental, special,
+                        consequential, or punitive damages, or any loss of data, profits, or reputation, arising from or
+                        related to your use of the Service.
+                    </p>
+                </div>
+
+                <div id="indemnity" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-shield-alt"
+                            style="color:#00bcd4; margin-right:8px;"></i> Indemnification</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        You agree to indemnify and hold harmless ReuniteIt, its officers, employees, and agents from any
+                        claims, damages, liabilities, and expenses
+                        arising out of or related to your use of the Service or your content, or your violation of these
+                        Terms or applicable law.
+                    </p>
+                </div>
+
+                <div id="termination" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-power-off"
+                            style="color:#00bcd4; margin-right:8px;"></i> Termination</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        We may suspend or terminate access to the Service at any time with or without notice for any
+                        reason, including violations of these Terms.
+                        Upon termination, your right to use the Service will immediately cease, but provisions that by
+                        their nature should survive will remain in effect.
+                    </p>
+                </div>
+
+                <div id="law" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-gavel"
+                            style="color:#00bcd4; margin-right:8px;"></i> Governing Law & Disputes</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        These Terms are governed by the laws of India, without regard to conflict-of-law principles. You
+                        agree to the exclusive jurisdiction
+                        of courts located in India for any dispute arising from or relating to these Terms or the
+                        Service.
+                    </p>
+                </div>
+
+                <div id="changes" class="card">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;"><i class="fas fa-sync-alt"
+                            style="color:#00bcd4; margin-right:8px;"></i> Changes to Terms</h2>
+                    <p style="margin:0; color:rgba(255,255,255,.85);">
+                        We may update these Terms from time to time. If changes are material, we will provide notice
+                        (e.g., via the Service or email).
+                        Your continued use of the Service after changes become effective constitutes acceptance of the
+                        revised Terms.
+                    </p>
+                </div>
+
+                <div id="contact" class="card card-gradient">
+                    <h2 style="font-size:1.2rem; margin:0 0 8px; color:#e0e0e0;">
+                        <i class="fas fa-envelope-open-text" style="color:#00bcd4; margin-right:8px;"></i> Contact Us
+                    </h2>
+                    <p style="margin:0 0 8px; color:rgba(255,255,255,.85);">If you have questions about these Terms,
+                        contact us at:</p>
+                    <ul style="margin:0; padding-left:18px; line-height:1.9; color:rgba(255,255,255,.9);">
+                        <li>Email: <a href="mailto:sakshamojha9461@gmail.com">sakshamojha9461@gmail.com</a></li>
+                        <li>Address: Ahmedabad, Gujarat, India</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</body>

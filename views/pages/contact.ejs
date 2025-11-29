@@ -1,0 +1,231 @@
+<body style="margin:0; font-family:'DM Sans', Montserrat, Arial, sans-serif; color:#e0e0e0; background:#0f0f0f;">
+    <section style="padding:4rem 5%; position:relative;">
+        <div style="max-width:1100px; margin:0 auto;">
+
+            <!-- Kicker + Title -->
+            <span
+                style="display:inline-block; font-size:0.9rem; letter-spacing:.1em; text-transform:uppercase; color:#00bcd4; background:rgba(0,188,212,.08); border:1px solid rgba(255,255,255,.15); padding:6px 12px; border-radius:999px; margin-bottom:10px; box-shadow:0 6px 20px rgba(0,0,0,.4);">Contact</span>
+
+            <h1
+                style="font-family:Montserrat, sans-serif; font-weight:700; font-size:clamp(28px,4vw,40px); margin:6px 0 10px; color:#e0e0e0; text-shadow:0 0 10px rgba(0,188,212,.15);">
+                Get in <span style="color:#00bcd4;">Touch</span>
+            </h1>
+            <p style="color:rgba(255,255,255,.8); max-width:760px; margin:0 0 26px 0;">
+                Have a question, found an item, or need support with <strong>ReuniteIt</strong>? Send us a message or
+                email, and we’ll get back to you.
+            </p>
+
+            <!-- Contact Grid -->
+            <div style="display:grid; grid-template-columns:2fr 1.2fr; gap:18px;">
+                <!-- Form Card -->
+                <div
+                    style="border-radius:15px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 8px 32px rgba(0,0,0,.4); padding:22px;">
+                    <h3
+                        style="font-size:1.25rem; margin:0 0 14px; color:#e0e0e0; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-envelope" style="color:#00bcd4;"></i> Send a Message
+                    </h3>
+                    <form action="https://formspree.io/f/mblveakw" method="post" autocomplete="off" id="contactForm"
+                        style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                        <div style="grid-column:span 1;">
+                            <label for="name"
+                                style="display:block; margin:0 0 6px; font-weight:600; color:#e0e0e0;">Full Name</label>
+                            <input id="name" name="name" type="text" placeholder="Your name"
+                                style="width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.12); color:#fff; outline:none; transition:box-shadow .3s ease, border-color .3s ease;"
+                                onfocus="this.style.boxShadow='0 0 0 4px rgba(0,188,212,.15)'; this.style.borderColor='#00bcd4';"
+                                onblur="this.style.boxShadow='none'; this.style.borderColor='rgba(255,255,255,.15)';"
+                                required>
+                        </div>
+
+                        <!-- Email -->
+                        <div style="grid-column:span 1;">
+                            <label for="email"
+                                style="display:block; margin:0 0 6px; font-weight:600; color:#e0e0e0;">Email</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com"
+                                style="width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.12); color:#fff; outline:none; transition:box-shadow .3s ease, border-color .3s ease;"
+                                onfocus="this.style.boxShadow='0 0 0 4px rgba(0,188,212,.15)'; this.style.borderColor='#00bcd4';"
+                                onblur="this.style.boxShadow='none'; this.style.borderColor='rgba(255,255,255,.15)';"
+                                required>
+                        </div>
+
+                        <!-- Subject -->
+                        <div style="grid-column:span 2;">
+                            <label for="subject"
+                                style="display:block; margin:0 0 6px; font-weight:600; color:#e0e0e0;">Subject</label>
+                            <input id="subject" name="subject" type="text" placeholder="How can we help?"
+                                style="width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.12); color:#fff; outline:none; transition:box-shadow .3s ease, border-color .3s ease;"
+                                onfocus="this.style.boxShadow='0 0 0 4px rgba(0,188,212,.15)'; this.style.borderColor='#00bcd4';"
+                                onblur="this.style.boxShadow='none'; this.style.borderColor='rgba(255,255,255,.15)';"
+                                required>
+                        </div>
+
+                        <!-- Message -->
+                        <div style="grid-column:span 2;">
+                            <label for="message"
+                                style="display:block; margin:0 0 6px; font-weight:600; color:#e0e0e0;">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Write your message..."
+                                style="width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.12); color:#fff; outline:none; transition:box-shadow .3s ease, border-color .3s ease; resize:vertical;"
+                                onfocus="this.style.boxShadow='0 0 0 4px rgba(0,188,212,.15)'; this.style.borderColor='#00bcd4';"
+                                onblur="this.style.boxShadow='none'; this.style.borderColor='rgba(255,255,255,.15)';"
+                                required></textarea>
+                        </div>
+                        <div id="formStatus" style="margin-top:2px; font-weight:600;"></div>
+                        <!-- Actions -->
+                        <div style="grid-column:span 2; display:flex; gap:10px; flex-wrap:wrap;">
+                            <button type="submit"
+                                style="padding:12px 18px; border-radius:10px; font-weight:700; border:0; background:#00bcd4; color:#0f0f0f; box-shadow:0 8px 22px rgba(0,188,212,.35); cursor:pointer; transition:transform .3s ease, box-shadow .3s ease;"
+                                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 28px rgba(0,188,212,.45)';"
+                                onmouseout="this.style.transform='none'; this.style.boxShadow='0 8px 22px rgba(0,188,212,.35)';">
+                                <i class="fas fa-paper-plane" style="margin-right:8px;"></i> Send Message
+                            </button>
+                            <a href="mailto:sakshamojha9461@gmail.com"
+                                style="display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:10px; font-weight:700; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#e0e0e0; text-decoration:none; transition:all .3s ease;"
+                                onmouseover="this.style.background='#00bcd4'; this.style.color='#0f0f0f'; this.style.boxShadow='0 0 15px rgba(0,188,212,.6)';"
+                                onmouseout="this.style.background='rgba(255,255,255,.06)'; this.style.color='#e0e0e0'; this.style.boxShadow='none';">
+                                <i class="fas fa-at"></i> Email Us
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Info + Map Card -->
+                <div style="display:flex; flex-direction:column; gap:18px;">
+                    <!-- Contact Info -->
+                    <div
+                        style="border-radius:15px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 8px 32px rgba(0,0,0,.4); padding:18px;">
+                        <h3
+                            style="font-size:1.25rem; margin:0 0 10px; color:#e0e0e0; display:flex; align-items:center; gap:10px;">
+                            <i class="fas fa-info-circle" style="color:#00bcd4;"></i> Contact Details
+                        </h3>
+                        <div style="display:grid; grid-template-columns:1fr; gap:10px; font-size:.95rem;">
+                            <div class="contact-row"
+                                style="display:flex; align-items:center; gap:10px; color:rgba(255,255,255,.9);">
+                                <i class="fas fa-envelope" style="color:#00bcd4;"></i>
+                                <a href="mailto:sakshamojha9461@gmail.com"
+                                    style="color:#00bcd4; text-decoration:none;">sakshamojha9461@gmail.com</a>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:10px; color:rgba(255,255,255,.9);">
+                                <i class="fas fa-phone" style="color:#00bcd4;"></i>
+                                <span>+91 94612 86197</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:10px; color:rgba(255,255,255,.9);">
+                                <i class="fas fa-map-marker-alt" style="color:#00bcd4;"></i>
+                                <span>Ahmedabad, Guajarat, India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map -->
+                    <div
+                        style="border-radius:15px; border:1px solid rgba(255,255,255,.15); overflow:hidden; background:rgba(255,255,255,.08); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 8px 32px rgba(0,0,0,.4);">
+                        <iframe title="ReuniteIt Map" src="https://www.google.com/maps?q=Ahmedabad&output=embed"
+                            width="100%" height="300"
+                            style="border:0; display:block; filter:grayscale(20%) invert(0%) brightness(90%);"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ quick links -->
+            <div
+                style="margin-top:18px; border-radius:15px; border:1px solid rgba(255,255,255,.15); background:linear-gradient(120deg, rgba(0,188,212,.10), rgba(138,43,226,.10)); box-shadow:0 8px 32px rgba(0,0,0,.4); padding:16px;">
+                <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                    <span style="font-weight:700; color:#e0e0e0;"><i class="fas fa-question-circle"
+                            style="color:#00bcd4; margin-right:8px;"></i>Need quick help?</span>
+                    <a href="/login"
+                        style="text-decoration:none; padding:10px 14px; border-radius:10px; font-weight:700; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#e0e0e0; transition:all .3s ease;"
+                        onmouseover="this.style.background='#00bcd4'; this.style.color='#0f0f0f'; this.style.boxShadow='0 0 15px rgba(0,188,212,.6)';"
+                        onmouseout="this.style.background='rgba(255,255,255,.06)'; this.style.color='#e0e0e0'; this.style.boxShadow='none';">
+                        Login
+                    </a>
+                    <a href="/signup"
+                        style="text-decoration:none; padding:10px 14px; border-radius:10px; font-weight:700; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#e0e0e0; transition:all .3s ease;"
+                        onmouseover="this.style.background='#00bcd4'; this.style.color='#0f0f0f'; this.style.boxShadow='0 0 15px rgba(0,188,212,.6)';"
+                        onmouseout="this.style.background='rgba(255,255,255,.06)'; this.style.color='#e0e0e0'; this.style.boxShadow='none';">
+                        Sign Up
+                    </a>
+                    <a href="mailto:sakshamojha9461@gmail.com"
+                        style="text-decoration:none; padding:10px 14px; border-radius:10px; font-weight:700; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#e0e0e0; transition:all .3s ease;"
+                        onmouseover="this.style.background='#00bcd4'; this.style.color='#0f0f0f'; this.style.boxShadow='0 0 15px rgba(0,188,212,.6)';"
+                        onmouseout="this.style.background='rgba(255,255,255,.06)'; this.style.color='#e0e0e0'; this.style.boxShadow='none';">
+                        Email Support
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            function qs(sel) { return document.querySelector(sel); }
+            function qsa(sel) { return Array.from(document.querySelectorAll(sel)); }
+            function setCols(el, cols) { if (el) el.style.gridTemplateColumns = cols; }
+
+            function applyResponsive() {
+                const w = window.innerWidth;
+
+                // 1) Collapse any 2-column grids (your bullet lists) on small screens
+                qsa('ul[style*="grid-template-columns:repeat(2"], div[style*="grid-template-columns:repeat(2"]').forEach(el => {
+                    if (w <= 720) setCols(el, '1fr');
+                    else setCols(el, 'repeat(2,minmax(0,1fr))');
+                });
+
+                // 2) Soften outer padding on smaller screens
+                const section = qs('section[style*="padding:4rem 5%"]');
+                if (section) {
+                    if (w <= 480) section.style.padding = '3rem 3%';
+                    else if (w <= 768) section.style.padding = '3.5rem 4%';
+                    else section.style.padding = '4rem 5%';
+                }
+
+                // 3) Prevent overflow: make long links wrap nicely inside cards
+                qsa('a').forEach(a => {
+                    a.style.wordBreak = (w <= 560) ? 'break-word' : '';
+                });
+
+                // 4) Optional: increase card padding slightly on desktop, tighter on mobile
+                qsa('div[style*="padding:18px;"][style*="border:1px solid rgba(255,255,255,.15)"]').forEach(card => {
+                    if (w <= 560) card.style.padding = '14px';
+                    else card.style.padding = '18px';
+                });
+
+            }
+            applyResponsive();
+            window.addEventListener('resize', applyResponsive);
+        })();
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("contactForm");
+            const statusEl = document.getElementById("formStatus");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault(); // STOP redirect
+
+                statusEl.style.color = "#00e5ff";
+                statusEl.textContent = "Sending...";
+
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: { "Accept": "application/json" },
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        statusEl.style.color = "#66ffb2";
+                        statusEl.textContent = "Message sent successfully!";
+                        form.reset();
+                    } else {
+                        statusEl.style.color = "#ff7b7b";
+                        statusEl.textContent = "Unable to send message. Try again.";
+                    }
+                } catch (err) {
+                    statusEl.style.color = "#ff7b7b";
+                    statusEl.textContent = "Network error — please try again!";
+                }
+            });
+        });
+    </script>
+
+</body>

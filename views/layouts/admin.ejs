@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= title %>
+    </title>
+    <meta name="description" content="<%= description || '' %>">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= title %>
+    </title>
+    <meta name="description"
+        content="<%= description || 'A powerful Lost & Found portal to report and discover lost items easily.' %>">
+    <meta name="keywords"
+        content="lost and found, lost items, found items, reunite belongings, missing things, lost wallet, lost phone">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- OPEN GRAPH (for WhatsApp, Instagram, LinkedIn shares) -->
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description"
+        content="<%= description || 'A platform to report and find lost and found items.' %>">
+    <meta property="og:type" content="website">
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= title %>">
+    <meta name="twitter:description" content="<%= description %>">
+
+    <!-- JSON-LD (Structured Data - Google loves this) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ReuniteIt",
+      "description": "A modern Lost & Found platform to report, discover, and recover lost items.",
+      "url": "https://yourdomain.com"
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=WDXL+Lubrifont+JP+N&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Space+Grotesk:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/images/image.png" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXX');
+    </script>
+
+</head>
+
+<body style="margin:0;">
+
+    <%- body %>
+
+</body>
+
+</html>

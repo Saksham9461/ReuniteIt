@@ -1,0 +1,29 @@
+<section class="hero">
+  <div class="glass-form" style="max-width:600px; margin: 30px auto;">
+    <h2><i class="fa-solid fa-pen me-2"></i>Edit Profile</h2>
+
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+      <div class="alert alert-danger">
+        <% errors.forEach(e => { %><p class="mb-1"><%= e %></p><% }) %>
+      </div>
+    <% } %>
+
+    <form action="/profile/edit" method="POST">
+      <div class="mb-3">
+        <label class="form-label"><i class="fa-solid fa-user me-2"></i>Full Name</label>
+        <input type="text" name="fullName" class="form-control" value="<%= formData ? formData.fullName : (user ? user.fullName : '') %>" required>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label"><i class="fa-solid fa-envelope me-2"></i>Email</label>
+        <input type="email" name="email" class="form-control" value="<%= formData ? formData.email : (user ? user.email : '') %>" required>
+      </div>
+
+      <button type="submit" class="btn btn-submit w-100"><i class="fa-solid fa-floppy-disk me-2"></i>Save Changes</button>
+    </form>
+
+    <div style="margin-top:12px;">
+      <a href="/profile" class="text-link">Back to profile</a>
+    </div>
+  </div>
+</section>
