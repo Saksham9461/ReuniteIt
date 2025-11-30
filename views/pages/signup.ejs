@@ -1,39 +1,7 @@
-<!-- <section class="hero">
-    <div class="glass-form">
-        <h2><i class="fa-solid fa-user-plus me-2"></i>Create Account</h2>
-        <form action="#" method="post">
-            <div class="mb-3">
-                <label class="form-label"><i class="fa-solid fa-user me-2"></i>Full Name</label>
-                <input type="text" class="form-control" placeholder="Enter your name" name="fullName" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label"><i class="fa-solid fa-envelope me-2"></i>Email</label>
-                <input type="email" class="form-control" placeholder="Enter your email" name="email" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label"><i class="fa-solid fa-lock me-2"></i>Password</label>
-                <input type="password" class="form-control" placeholder="Create a password" name="password" required>
-            </div>
-
-            <button type="submit" class="btn btn-submit w-100">
-                <i class="fa-solid fa-user-check me-2"></i>Sign Up
-            </button>
-
-            <div class="text-link mt-3">
-                Already have an account? <a href="/login">Login</a>
-            </div>
-        </form>
-    </div>
-</section> -->
-
-
 <section class="hero">
     <div class="glass-form">
         <h2><i class="fa-solid fa-user-plus me-2"></i>Create Account</h2>
 
-        <!-- ⭐ ERROR MESSAGES SHOW HERE (no design change) ⭐ -->
         <% if (typeof errors !== "undefined" && errors.length > 0) { %>
             <div class="alert alert-danger">
                 <% errors.forEach(err => { %>
@@ -42,7 +10,7 @@
             </div>
         <% } %>
 
-        <form action="/signup" method="post">
+        <form action="/signup" method="post" autocomplete="off">
             <div class="mb-3">
                 <label class="form-label"><i class="fa-solid fa-user me-2"></i>Full Name</label>
                 <input 
