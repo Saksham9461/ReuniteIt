@@ -156,7 +156,7 @@ nav {
     z-index: 1000;
 }
 
-nav .logo h1 {
+nav .logo h1,.logo-footer h1 {
     font-size: 1.8em;
     color: var(--neon-blue);
     letter-spacing: 1px;
