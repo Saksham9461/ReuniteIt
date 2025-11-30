@@ -134,6 +134,7 @@ app.get("/", async (req, res) => {
       description: "Search and report lost or found items easily and quickly.",
       url: BASE_URL + "/",
       items,
+      hideAuthNav: true
     });
   } catch (err) {
     console.error("GET / error:", err);
@@ -143,6 +144,7 @@ app.get("/", async (req, res) => {
       url: BASE_URL + "/",
       items: [],
       errors: ["Unable to load items right now."],
+      hideAuthNav: true
     });
   }
 });
