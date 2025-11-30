@@ -91,6 +91,21 @@ function escapeRegex(text) {
 }
 
 // ---------- Middleware: template defaults & hideAuthNav default ----------
+// debug middleware - log cookie presence (remove or comment out in production)
+app.use((req, res, next) => {
+  next();
+});
+
+// no-cache for dynamic routes (so logged-in state updates correctly between tabs)
+app.use((req, res, next) => {
+  // apply for all HTML responses (adjust if needed)
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
+// --------
 app.use((req, res, next) => {
   // ensure templates always have these variables (prevents EJS reference errors)
   res.locals.formData = res.locals.formData || {};
@@ -99,25 +114,56 @@ app.use((req, res, next) => {
   next();
 });
 
-// ---------- Middleware: currentUser available in all views ----------
+// ---------- Middleware: currentUser available in all views (silent) ----------
 app.use(async (req, res, next) => {
   try {
     res.locals.currentUser = null;
     const userId = req.cookies && req.cookies.userId;
-    if (userId && mongoose.Types.ObjectId.isValid(userId)) {
-      const user = await User.findById(userId).select("fullName email").lean();
-      if (user) {
-        // keep _id as string for easy comparison in templates
-        user._id = user._id.toString();
-        res.locals.currentUser = user;
-      }
+
+    if (!userId) {
+      // no cookie -> continue silently
+      return next();
     }
+
+    // quick validity check
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      // invalid id - clear cookie and continue
+      res.clearCookie('userId', { path: '/' });
+      return next();
+    }
+
+    // Try to load user once per request
+    const user = await User.findById(userId).select("fullName email").lean();
+
+    if (!user) {
+      // cookie present but user not found - clear cookie and continue
+      res.clearCookie('userId', { path: '/' });
+      return next();
+    }
+
+    user._id = user._id.toString();
+    res.locals.currentUser = user;
+    // also attach to req for use in routes
+    req.currentUser = user;
+
   } catch (err) {
-    console.error("Error loading current user:", err);
+    // keep silent on error, but still ensure currentUser is null
     res.locals.currentUser = null;
   }
   next();
 });
+
+
+// prevent browser/proxy caching of dynamic HTML pages
+app.use((req, res, next) => {
+  // only for GET HTML responses - but we keep it simple and apply globally
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
+
 
 // ---------- SITE BASE URL (for meta tags) ----------
 const BASE_URL = process.env.BASE_URL || "http://localhost:" + port;
@@ -125,7 +171,6 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:" + port;
 // -------------------- ROUTES --------------------
 
 // Home page (index)
-// Note: hideAuthNav set to true here as per your earlier preference for homepage
 app.get("/", async (req, res) => {
   try {
     const items = await Item.find().sort({ createdAt: -1 }).lean();
@@ -134,7 +179,7 @@ app.get("/", async (req, res) => {
       description: "Search and report lost or found items easily and quickly.",
       url: BASE_URL + "/",
       items,
-      hideAuthNav: true
+      // hideAuthNav: true
     });
   } catch (err) {
     console.error("GET / error:", err);
@@ -144,7 +189,7 @@ app.get("/", async (req, res) => {
       url: BASE_URL + "/",
       items: [],
       errors: ["Unable to load items right now."],
-      hideAuthNav: true
+      // hideAuthNav: true
     });
   }
 });
@@ -198,12 +243,15 @@ app.post("/login", async (req, res) => {
         formData: { email }
       });
     }
-
     // SUCCESS: set httpOnly cookie
     res.cookie("userId", user._id.toString(), {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000
+      path: '/',                     // ensure cookie is sent for all routes
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'lax',
+      secure: process.env.NODE_ENV === 'production' // only true on HTTPS in prod
     });
+
 
     return res.redirect("/dashboard");
   } catch (err) {
@@ -745,7 +793,7 @@ app.post("/report-lost", upload.single("image"), async (req, res) => {
       location,
       status: "LOST",
       date,
-      imageUrl: req.file.path,   // CLOUDINARY URL ⭐
+      imageUrl: req.file.path,
       description,
       postedBy: user._id
     });
@@ -838,9 +886,13 @@ app.post("/admin/login", async (req, res) => {
       // set httpOnly cookie (valid for 8 hours)
       res.cookie("adminAuth", "1", {
         httpOnly: true,
-        // secure: true, // enable in production under HTTPS
+        path: '/',
+        // secure: true // enable automatically below
+        sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'lax',
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 8 * 60 * 60 * 1000
       });
+
       return res.redirect("/admin/dashboard");
     }
 
@@ -873,7 +925,7 @@ app.get("/admin/dashboard", requireAdmin, async (req, res) => {
     const totalReports = await Item.countDocuments();
     const totalLost = await Item.countDocuments({ status: "LOST" });
     const totalFound = await Item.countDocuments({ status: "FOUND" });
-    const pending = await Item.countDocuments({ approved: { $exists: false } }); // not yet moderated
+    const pending = await Item.countDocuments({ approved: { $exists: false } });
 
     // list data
     const users = await User.find().lean();
@@ -962,9 +1014,4 @@ app.use((req, res) => {
     url: BASE_URL + req.originalUrl,
     hideAuthNav: true
   });
-});
-
-// ---------- start server ----------
-app.listen(port, () => {
-  console.log(`Port is active at :${port}`);
 });
