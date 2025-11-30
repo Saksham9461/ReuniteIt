@@ -34,32 +34,6 @@ app.set("views", path.join(__dirname, "views"));
 app.use(expressLayouts);
 app.set('layout', 'layouts/main');
 
-// // ---------- Mongoose connect ----------
-// main()
-//   .then(() => console.log("Database Connected!"))
-//   .catch(err => console.log("DB Connection Error:", err));
-
-// async function main() {
-//   try {
-//     await mongoose.connect(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/reuniteit', {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//       serverSelectionTimeoutMS: 30000, // increase wait time during dev (30s)
-//       socketTimeoutMS: 45000,
-//       family: 4 // try IPv4 first
-//     });
-//     console.log('MongoDB connected ✓');
-//   } catch (err) {
-//     console.error('MongoDB connection error:', err.message || err);
-//     // helpful suggestions for quick debugging
-//     console.error('Make sure MONGO_URL is correct, IP is whitelisted in Atlas, and credentials are valid.');
-//     // exit or retry policy — for now exit so the error is visible
-//     process.exit(1);
-//   }
-// }
-
 // ---------- DB connect + bootstrap (replace your current mongoose connect / app.listen) ----------
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/reuniteit';
 
@@ -160,7 +134,6 @@ app.get("/", async (req, res) => {
       description: "Search and report lost or found items easily and quickly.",
       url: BASE_URL + "/",
       items,
-      hideAuthNav: true
     });
   } catch (err) {
     console.error("GET / error:", err);
@@ -170,7 +143,6 @@ app.get("/", async (req, res) => {
       url: BASE_URL + "/",
       items: [],
       errors: ["Unable to load items right now."],
-      hideAuthNav: true
     });
   }
 });
