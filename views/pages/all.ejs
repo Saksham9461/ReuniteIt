@@ -129,21 +129,30 @@
                                 <img src="<%= item.imageUrl %>" alt="<%= item.category %>">
                             </div>
                             <div class="item-details">
-                                <h6><i class="fas fa-tag"></i> <strong>Category :</strong>&nbsp; <%= item.category %>
-                                </h6>
+                                <div class="meta-row">
+                                    <i class="fas fa-tag"></i>
+                                    <h6><span class="meta-label"><strong>Category :</strong></span></h6>
+                                    <h6><span class="meta-value">
+                                            <%= item.category %>
+                                        </span></h6>
+                                </div>
+
                                 <div class="meta-row">
                                     <i class="fas fa-map-marker-alt"></i>
                                     <h6><span class="meta-label"><strong>Location :</strong></span></h6>
                                     <h6><span class="meta-value">
-                                        <%= item.location %>
-                                    </span></h6>
+                                            <%= item.location %>
+                                        </span></h6>
                                 </div>
-
-                                <h6><i class="fas fa-code-branch"></i> <strong>Status :</strong>&nbsp; <%= item.status
-                                        %>
-                                </h6>
-                                <h6><i class="fas fa-calendar"></i> <strong>Date :</strong>&nbsp; <%=
-                                        item.createdAt.toString().split(" ").slice(1,4).join(" ") %> <br></h6>
+                                <div class="meta-row">
+                                    <i class="fas fa-code-branch"></i>
+                                    <h6><span class="meta-label"><strong>Status :</strong></span></h6>
+                                    <h6><span class="meta-value">
+                                            <%= item.status %>
+                                        </span></h6>
+                                </div>
+                                <h6><i class="fas fa-calendar"></i> <strong>Date :</strong>&nbsp;
+                                    <%= item.createdAt.toString().split(" ").slice(1,4).join(" ") %></h6>
                     <a href=" /items/<%=item._id%>"><button type="button" class="btn btn-primary detail-btn">See
                                             Details</button></a>
                             </div>
