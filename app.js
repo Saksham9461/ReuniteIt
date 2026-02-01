@@ -162,6 +162,12 @@ app.use((req, res, next) => {
   res.setHeader('Expires', '0');
   next();
 });
+app.use((req, res, next) => {
+  res.locals.title = "ReuniteIt";
+  res.locals.description =
+    "A platform to report and find lost and found items.";
+  next();
+});
 
 
 
