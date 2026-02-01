@@ -15,8 +15,10 @@
 
     <!-- OPEN GRAPH (for WhatsApp, Instagram, LinkedIn shares) -->
     <meta property="og:title" content="<%= title %>">
-    <meta property="og:description"
-        content="<%= description || 'A platform to report and find lost and found items.' %>">
+
+    <meta property="og:description" content="<%= (typeof description !== 'undefined')
+        ? description
+        : 'A platform to report and find lost and found items.' %>">
     <meta property="og:type" content="website">
     <meta name="google-site-verification" content="-SXHm07ei6eO0dFyQcA98JvuLPSoUb2FV-_NqcMnXuc" />
     <!-- TWITTER CARD -->
