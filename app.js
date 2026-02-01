@@ -162,14 +162,6 @@ app.use((req, res, next) => {
   res.setHeader('Expires', '0');
   next();
 });
-app.use((req, res, next) => {
-  res.locals.title = "ReuniteIt";
-  res.locals.description =
-    "A platform to report and find lost and found items.";
-  next();
-});
-
-
 
 // ---------- SITE BASE URL (for meta tags) ----------
 const BASE_URL = process.env.BASE_URL || "http://localhost:" + port;
@@ -882,6 +874,7 @@ app.post("/admin/login", async (req, res) => {
     if (!email || !password) {
       return res.render("admin/login.ejs", {
         title: "Admin Login | ReuniteIt",
+        description: "Admin login error",
         errors: ["Email and Password are required"],
         formData: { email }
       });
@@ -904,6 +897,7 @@ app.post("/admin/login", async (req, res) => {
 
     return res.render("admin/login.ejs", {
       title: "Admin Login | ReuniteIt",
+      description: "Admin login error",
       errors: ["Invalid admin credentials"],
       formData: { email }
     });
@@ -911,6 +905,7 @@ app.post("/admin/login", async (req, res) => {
     console.error("Admin login error:", err);
     return res.render("admin/login.ejs", {
       title: "Admin Login | ReuniteIt",
+      description: "Admin login error",
       errors: ["Server error. Try again."],
       formData: {}
     });
